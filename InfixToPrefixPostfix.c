@@ -25,25 +25,24 @@
 /**************************/
 void acquisizione_scelta(int *);
 void infix_to_postfix(char *,
-		                  char [],
-		                  char []);
+		      char [],
+		      char []);
 void reverse(char []);
 void infix_to_prefix(char *,
-		                 char [],
-		                 char []);
+		     char [],
+		     char []);
 int acquisisci_espressione(char []);
 int operatore(char);
 void push(char [],
-	        char,
-	        int *);
+	  char,
+	  int *);
 void pop(int *);
 int pila_vuota(int);
 int precedenza(char,
-	             char);
+	       char);
 int ottieni_precedenza(char);
 void aggiungi_spazio(char [],
-		                 int *);
-
+	             int *);
 
 /******************************/
 /* Definizione delle funzioni */
@@ -61,11 +60,11 @@ int main(void)
 	
 	/* Allocazione array */
 	espressione_infissa = (char *)calloc(DIMENSIONEMASSIMA,
-					                             sizeof(char));
+		                             sizeof(char));
 	espressione_output = (char *)calloc(DIMENSIONEMASSIMA * 2,
-					                            sizeof(char));
+		                            sizeof(char));
 	pila = (char *)calloc(DIMENSIONEMASSIMA,
-			                  sizeof(char));
+	                      sizeof(char));
 	
 	printf("\nIl programma consente di trasformare un'espressione aritmetica\n");
 	printf("da notazione infissa a notazione prefissa o postfissa\n");
@@ -95,8 +94,8 @@ int main(void)
 				if (espr_non_valida == 0)
 				{
 					infix_to_prefix(pila,
-							            espressione_infissa,
-							            espressione_output);
+						        espressione_infissa,
+						        espressione_output);
 					printf("\nEspressione prefissa: %s",
 					       espressione_output);
 				}
@@ -124,8 +123,8 @@ int main(void)
 				if (espr_non_valida == 0)
 				{
 					infix_to_postfix(pila,
-							             espressione_infissa,
-							             espressione_output);
+						         espressione_infissa,
+						         espressione_output);
 					printf("\nEspressione postfissa: %s",
 					       espressione_output);
 				}
@@ -167,7 +166,7 @@ void acquisizione_scelta(int *scelta)
 	{
 		printf("Scelta: ");
 		esito_lettura = scanf("%d",
-				                  scelta);
+				      scelta);
 		do
 			if (scanf("%c",
 				  &carattere_non_letto) != 1);
@@ -178,8 +177,8 @@ void acquisizione_scelta(int *scelta)
 
 
 void infix_to_postfix(char pila[],
-		                  char infissa[],
-		                  char postfissa[])
+		      char infissa[],
+		      char postfissa[])
 {
 	/* Dichiarazione variabili locali alla funzione */
 	int i,
@@ -217,12 +216,12 @@ void infix_to_postfix(char pila[],
 			       (pila[top] != '('))
 			{
 				aggiungi_spazio(postfissa,
-						            &j);
+				                &j);
 				postfissa[j] = pila[top];
 				j++;
 				pop(&top);
 				aggiungi_spazio(postfissa,
-						            &j);
+				                &j);
 			}
 			pop(&top);
 		}
@@ -235,7 +234,7 @@ void infix_to_postfix(char pila[],
 				j++;
 				pop(&top);
 				aggiungi_spazio(postfissa,
-						            &j);
+				                &j);
 			}
 			push(pila,
 			     elem_temp,
@@ -245,7 +244,7 @@ void infix_to_postfix(char pila[],
 	while (pila_vuota(top) == 0)
 	{
 		aggiungi_spazio(postfissa,
-				            &j);
+			        &j);
 		postfissa[j] = pila[top];
 		j++;
 		pop(&top);
@@ -280,7 +279,7 @@ void reverse(char espressione[])
 }
 
 void aggiungi_spazio(char espressione[],
-		                 int *j)
+	             int *j)
 {
 	if(espressione[*j - 1] != ' ')
 	{
@@ -290,8 +289,8 @@ void aggiungi_spazio(char espressione[],
 }
 
 void infix_to_prefix(char pila[],
-		                 char infissa[],
-		                 char prefissa[])
+		     char infissa[],
+		     char prefissa[])
 {
 	/* Dichiarazione variabili locali alla funzione */
 	int i,
@@ -316,7 +315,7 @@ void infix_to_prefix(char pila[],
 			j++;
 			if(operatore(infissa[i + 1]) == 1)
 				aggiungi_spazio(prefissa,
-						            &j);
+						&j);
 		}
 		else if (elem_temp == ')')
 			push(pila,
@@ -334,7 +333,7 @@ void infix_to_prefix(char pila[],
 				pop(&top);
 			}
 			aggiungi_spazio(prefissa,
-					            &j);
+					&j);
 			pop(&top);
 		}
 		else
@@ -366,7 +365,7 @@ void infix_to_prefix(char pila[],
 	while (pila_vuota(top) == 0)
 	{
 		aggiungi_spazio(prefissa,
-				            &j);
+				&j);
 		prefissa[j] = pila[top];
 		j++;
 		pop(&top);
@@ -394,12 +393,12 @@ int acquisisci_espressione(char espressione_infissa [])
 	
 	/* Allocazione array temporaneo */
 	espressione_temp = (char *)calloc(DIMENSIONEMASSIMA,
-					                          sizeof(char));
+					  sizeof(char));
 	
 	/* Acquisizione stringa */
 	if (fgets(espressione_temp,
-		        DIMENSIONEMASSIMA,
-		        stdin));
+		  DIMENSIONEMASSIMA,
+		  stdin));
 	
 	lunghezza_s = strlen(espressione_temp);
 
@@ -436,11 +435,11 @@ int acquisisci_espressione(char espressione_infissa [])
 				espr_non_valida = 1;
 			/* Verifica se nell'espressione c'e' un operatore seguito da ')' */
 			else if((operatore(espressione_temp[i]) == 1) &&
-				      (espressione_temp[i + 1] == ')'))
+				(espressione_temp[i + 1] == ')'))
 				espr_non_valida = 1;
 			/* Verifica se nell'espressione c'e' '(' seguito da un operatore */
 			else if((espressione_temp[i] == '(') &&
-				      (operatore(espressione_temp[i + 1]) == 1))
+			 	(operatore(espressione_temp[i + 1]) == 1))
 				espr_non_valida = 1;
 			else
 			{
