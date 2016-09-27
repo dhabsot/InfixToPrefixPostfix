@@ -1,28 +1,18 @@
+/* Github link: https://github.com/dhabsot/InfixToPrefixPostfix */
+
 /********************************************************************************/
-/* Acquisizione da tastiera di un'espressione in notazione infix e		*/
-/* stampa a video le corrispondenti espressioni aritmetiche in notazione	*/
-/* prefissa	e postfix, rispettivamente. Per semplicita', assumere che	*/
-/* l'espressione di partenza contenga soltanto numeri (no variabili)	  	*/
-/* ed occorrenze dei quattro operatori aritmetici binari (no		        */
-/* operatori unari), piu' eventuali parenthesis tonde.	     			*/
+/* This program allows the user to convert an arithmetic expression in		*/
+/* infix notation, to prefix or postfix notation. The expression can contain	*/
+/* only numbers, +, -, *, /, (, ).						*/
 /********************************************************************************/
 
-/*****************************/
-/* Inclusione delle librerie */
-/*****************************/
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
 
-/***********************************/
-/* Definizione costanti simboliche */
-/***********************************/
 #define MAXDIMENSION 201
 
-/**************************/
-/* Dichiarazione funzioni */
-/**************************/
 void choice_acquisition(int *);
 void infix_to_postfix(char *,
 		      char [],
@@ -44,21 +34,14 @@ int acquire_precedence(char);
 void add_space(char [],
 	             int *);
 
-/******************************/
-/* Definizione delle funzioni */
-/******************************/
-
-/* Definizione della funzione main */
 int main(void)
 {
-	/* Dichiarazione variabili locali alla funzione */
 	int  choice;
 	char *infix_expression,
 	     *output_expression,
 	     *stack;
 	int not_valid_expression;
 	
-	/* Allocazione array */
 	infix_expression = (char *)calloc(MAXDIMENSION,
 		                             sizeof(char));
 	output_expression = (char *)calloc(MAXDIMENSION * 2,
