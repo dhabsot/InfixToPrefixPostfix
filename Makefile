@@ -1,8 +1,8 @@
 InfixToPrefixPostfix.o: InfixToPrefixPostfix.o Makefile
 	gcc -ansi -Wall -O InfixToPrefixPostfix.c -o InfixToPrefixPostfix
 
-pulisci:
+clean:
 	-rm -f InfixToPrefixPostfix.o
 
-pulisci_tutto:
+clean_everything:
 	rm -f InfixToPrefixPostfix InfixToPrefixPostfix.o
