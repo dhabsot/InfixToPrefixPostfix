@@ -126,7 +126,7 @@ int main(void)
 				break;
 				
 			case 3:
-				printf("\Exiting.\n\n");
+				printf("\nExiting.\n\n");
 				break;
 		}
 	}
